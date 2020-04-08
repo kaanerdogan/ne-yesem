@@ -7,9 +7,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form (ngSubmit)="sendToTranslate()">
-    <ion-searchbar (ionChange)="searchRecipe($event)" placeholder="Çikolata muz süt..." inputmode="text" type="search"
-      showCancelButton="never" animated="true">
+  <form (ngSubmit)="sendToTranslate(query)">
+    <ion-searchbar placeholder="Çikolata muz süt..." inputmode="text" type="search"
+      showCancelButton="never" animated="true" [(ngModel)]="query" [ngModelOptions]="{standalone: true}">
     </ion-searchbar>
     <ion-button type="submit" expand="block" fill="clear" shape="round">
       Bana tarifimi getir

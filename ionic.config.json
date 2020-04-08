@@ -1,5 +1,7 @@
 {
   "name": "Ne Yesem",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

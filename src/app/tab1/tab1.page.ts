@@ -32,13 +32,8 @@ export class Tab1Page {
     });
   }
 
-
-  searchRecipe(e: any) {
-    this.query = e.detail.value;
-  }
-
-  async sendToTranslate() {
-    if (this.query == undefined) {
+  async sendToTranslate(query) {
+    if (query == undefined) {
       const alert = await this.alertCtrl.create({
         header: "Hata!",
         message: "Lütfen boş bırakmayınız!",
@@ -51,28 +46,29 @@ export class Tab1Page {
         message: "Çevriliyor..."
       });
       await loading.present();
-      console.log("Translate'e gönderilen sorgu: " + this.query);
-      this.tService.translateToEn(this.query).subscribe((res) => {
+      console.log("Translate'e gönderilen sorgu: " + query);
+      this.tService.translateToEn(query).subscribe((res) => {
         console.log(res);
         var resText = <any>res;
         console.log(resText.text);
         resText.text.forEach(element => {
           this.query = element;
         });
-        console.log("this.query = " + this.query);
+        console.log("this.query = " + query);
         console.log("Google'dan dönen yanıtın içerisindeki yazı edamam'a gönderiliyor...");
         loading.dismiss();
-        this.sendToRecipe();
+        this.sendToRecipe(query);
       });
     }
   }
 
-  async sendToRecipe() {
+  async sendToRecipe(query) {
+    console.log(query);
     const loading = await this.loadingCtrl.create({
       message: "Tarif Getiriliyor..."
     });
     await loading.present();
-    this.rService.getRecipes(this.query).subscribe((data) => {
+    this.rService.getRecipes(query).subscribe((data) => {
       console.log("edamam\'dan yanıt döndü...");
       var anyData = <any>data;
       console.log("Edamam\'dan dönen yanıt içerisinden alınmak istenen nesne elemanları ön tarafa gönderildi.");

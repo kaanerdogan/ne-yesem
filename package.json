@@ -1,8 +1,8 @@
 {
   "name": "ne-yesem",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "İsa Kaan Erdoğan",
+  "homepage": "https://kaanerdogan.com.tr/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -58,7 +58,7 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project",
+  "description": "Yemek Tarifi Uygulaması",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},

@@ -2,7 +2,7 @@
 <widget id="io.mem.neyesem" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Ne Yesem?</name>
     <description>Malzemelere göre yemek tariflerini gösteren mobil uygulama</description>
-    <author email="isa@kaanerdogan.com.tr" href="https://kaanerdogan.com.tr/">MeM By İsa Kaan Erdoğan</author>
+    <author email="isa@kaanerdogan.com.tr" href="https://kaanerdogan.com.tr/">M.e.M. By İsa Kaan Erdoğan</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

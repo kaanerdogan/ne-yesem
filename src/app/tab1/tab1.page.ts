@@ -13,7 +13,7 @@ import { RecipesService } from '../api/recipes//recipes.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  query: string;
+  query = "";
   recipes = [];
   recipesCount = '';
   recipeControl = true;
@@ -33,7 +33,8 @@ export class Tab1Page {
   }
 
   async sendToTranslate(query) {
-    if (query == undefined) {
+    console.log(query);
+    if (query == "") {
       const alert = await this.alertCtrl.create({
         header: "Hata!",
         message: "Lütfen boş bırakmayınız!",
@@ -54,15 +55,15 @@ export class Tab1Page {
         resText.text.forEach(element => {
           this.query = element;
         });
-        console.log("this.query = " + query);
+        console.log("this.query = " + this.query);
         console.log("Google'dan dönen yanıtın içerisindeki yazı edamam'a gönderiliyor...");
         loading.dismiss();
-        this.sendToRecipe(query);
+        this.sendToRecipe(this.query);
       });
     }
   }
 
-  async sendToRecipe(query) {
+  async sendToRecipe(query: any) {
     console.log(query);
     const loading = await this.loadingCtrl.create({
       message: "Tarif Getiriliyor..."

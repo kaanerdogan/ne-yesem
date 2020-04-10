@@ -24,7 +24,7 @@ export class Tab1Page {
     public tService: TranslateService,
     public rService: RecipesService) {
     this.platform.backButton.subscribeWithPriority(997, () => {
-      if (this.constructor.name == "HomePage") {
+      if (this.constructor.name == "Tab1Page") {
         if (window.confirm("Çıkış yapmak ister misiniz?")) {
           navigator["app"].exitApp();
         }

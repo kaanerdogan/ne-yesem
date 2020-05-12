@@ -1,57 +1,102 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">
-      Tarif Ara
-    </ion-title>
+    <ion-buttons slot="start" *ngIf="recipes != 0">
+      <ion-button (click)="filter()">
+        <ion-icon name="options-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <form (ngSubmit)="sendToTranslate(query)">
+      <ion-searchbar placeholder="Tarif Ara" inputmode="text" type="search" showCancelButton="never"
+      animated="true" [(ngModel)]="query" [ngModelOptions]="{standalone: true}">
+      </ion-searchbar>
+      <!-- <ion-button type="submit" expand="block" fill="clear" shape="round">
+        Bana tarifimi getir
+      </ion-button> -->
+    </form>    
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <form (ngSubmit)="sendToTranslate(query)">
-    <ion-searchbar placeholder="Çikolata muz süt..." inputmode="text" type="search"
-      showCancelButton="never" animated="true" [(ngModel)]="query" [ngModelOptions]="{standalone: true}">
-    </ion-searchbar>
-    <ion-button type="submit" expand="block" fill="clear" shape="round">
-      Bana tarifimi getir
-    </ion-button>
-  </form>
-  
-  
-  <ion-card *ngFor="let recipe of recipes; let i=index">
-    <img src="{{recipe.recipe.image}}" alt="{{recipe.recipe.label}}" class="recipeImg">
+<ion-content>
+
+  <ion-item *ngIf="filters != 0">
+  <ion-chip *ngFor="let filter of filters" color="primary">
+    <ion-label color="primary">{{filter}}</ion-label>
+  </ion-chip>
+</ion-item>
+
+  <!-- <ion-list> -->
+
+  <!-- <ion-item-sliding> -->
+  <!-- <ion-item> -->
+  <ion-card *ngFor="let recipe of recipes; let i=index" (click)="favorite(recipe.recipe.label)">
+    <img src="{{recipe.recipe.image}}" alt="{{recipe.recipe.label}}" class="recipeImg" />
+
     <ion-card-header>
-      <ion-card-subtitle>{{recipe.recipe.yield}} Kişilik | Kalori: {{recipe.recipe.calories | number}} <b
-          *ngIf="recipe.recipe.totalTime != 0">| {{recipe.recipe.totalTime}} dakikada hazır</b> </ion-card-subtitle>
+      <ion-card-subtitle
+        >{{recipe.recipe.yield}} Kişilik | Kalori: {{recipe.recipe.calories |
+        number}}
+        <b *ngIf="recipe.recipe.totalTime != 0"
+          >| {{recipe.recipe.totalTime}} dakikada hazır</b
+        >
+      </ion-card-subtitle>
       <ion-card-title>{{recipe.recipe.label}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <u style="color: black; font-weight: 700">Malzemeler</u>
-      <div *ngFor="let ingredientLine of recipe.recipe.ingredientLines; let a=index"><b style="color: black;">{{a+1}}
-          - </b>{{ingredientLine}}</div>
+      <u style="color: black; font-weight: 700;">Malzemeler</u>
+      <div
+        *ngFor="let ingredientLine of recipe.recipe.ingredientLines; let a=index"
+      >
+        <b style="color: black;">{{a+1}} - </b>{{ingredientLine}}
+      </div>
       <u style="color: black; font-weight: 700;">Besin Değerleri</u>
-      <div>Enerji: {{recipe.recipe.totalNutrients.ENERC_KCAL.quantity | number}}
-        {{recipe.recipe.totalNutrients.ENERC_KCAL.unit}}</div>
-      <div>Yağ: {{recipe.recipe.totalNutrients.FAT.quantity | number}} {{recipe.recipe.totalNutrients.FAT.unit}}
+      <div>
+        Enerji: {{recipe.recipe.totalNutrients.ENERC_KCAL.quantity | number}}
+        {{recipe.recipe.totalNutrients.ENERC_KCAL.unit}}
       </div>
-      <div>Lif: {{recipe.recipe.totalNutrients.FIBTG.quantity | number}} {{recipe.recipe.totalNutrients.FIBTG.unit}}
+      <div>
+        Yağ: {{recipe.recipe.totalNutrients.FAT.quantity | number}}
+        {{recipe.recipe.totalNutrients.FAT.unit}}
       </div>
-      <div>Şeker: {{recipe.recipe.totalNutrients.SUGAR.quantity | number}}
-        {{recipe.recipe.totalNutrients.SUGAR.unit}}</div>
-      <div>Protein: {{recipe.recipe.totalNutrients.PROCNT.quantity | number}}
-        {{recipe.recipe.totalNutrients.PROCNT.unit}}</div>
+      <div>
+        Lif: {{recipe.recipe.totalNutrients.FIBTG.quantity | number}}
+        {{recipe.recipe.totalNutrients.FIBTG.unit}}
+      </div>
+      <div>
+        Şeker: {{recipe.recipe.totalNutrients.SUGAR.quantity | number}}
+        {{recipe.recipe.totalNutrients.SUGAR.unit}}
+      </div>
+      <div>
+        Protein: {{recipe.recipe.totalNutrients.PROCNT.quantity | number}}
+        {{recipe.recipe.totalNutrients.PROCNT.unit}}
+      </div>
       <ion-row>
         <ion-col size="12" class="ion-align-self-center">
-          <div (click)="tarifUrl(recipe.recipe.url)" class="ion-text-center">Tarif(ingilizce)<ion-icon
-              name="open-outline"></ion-icon>
+          <div (click)="tarifUrl(recipe.recipe.url)" class="ion-text-center">
+            Tarif(ingilizce)<ion-icon name="open-outline"></ion-icon>
           </div>
         </ion-col>
       </ion-row>
     </ion-card-content>
   </ion-card>
+  <!-- </ion-item> -->
+
+  <!-- <ion-item-options side="start">
+          <ion-item-option (click)="favorite()" color="danger">
+            <ion-icon name="heart" slot="icon-only"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+ 
+
+      <ion-item-options side="end">
+        <ion-item-option (click)="share()">
+          <ion-icon name="paper-plane" slot="icon-only"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding> -->
+  <!-- </ion-list> -->
 
   <ion-chip outline="true" [hidden]="recipeControl" *ngIf="recipes != 0">
     <ion-label color="success">{{recipesCount}}</ion-label>
   </ion-chip>
-
 </ion-content>

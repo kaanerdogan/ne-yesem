@@ -25,6 +25,9 @@ export class AppComponent {
         this.statusBar.backgroundColorByHexString("#fafafa");
         this.splashScreen.hide();
       }
+      else {
+        console.log("Burası tarayıcı.");
+      }
     });
   }
 }

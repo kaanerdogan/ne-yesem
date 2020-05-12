@@ -28,3 +28,54 @@ Ne Yesem, Ionic Framework ile geliştirilen bir mobil uygulamadır. Tarifler Eda
 - Tarife tıklanıldığında açılan yeni bir sayfada tarifin tüm özelliklerinin gösterilmesi.
 
 > Geliştirmeler devam ediyor.
+
+### Yükleme
+
+Ne Yesem, [Ionic](https://ionicframework.com/) ile kodlanmıştır. Çalıştırılması ve native çıktı alınabilmesi için [Ionic CLI](https://ionicframework.com/docs/cli) yüklü olmalıdır.
+
+Ionic, [TypeScript](http://www.typescriptlang.org/) tabanlıdır ve [Node.js](https://nodejs.org/en/) ile oluşturulmuştur. Node 10.3+ sürümleri desteklenir, ancak en son LTS(Long Term Support) sürümü önerilmektedir. Node.js [indirme](https://nodejs.org/en/download/) sayfasından kullanılacak işletim sistemi ve mimari seçilerek indirme işlemine devam edilmelidir. İndirme işlemi tamamlandıktan sonra yükleme tamamlanmalıdır.
+
+Yükleme
+>node --version
+
+ve
+
+>npm --version
+
+ile kontrol edilmelidir. Node yüklemesi doğrulandıktan sonra 
+
+>npm install -g @ionic/cli
+
+komutu ile Ionic CLI yüklemesi gerçekleştirilir.
+
+>ionic --version
+
+kodu ile ionic cli yüklemesi doğrulanmalıdır.
+
+Herhangi bir sıkıntı oluşması durumunda, kullanılabilir komutlar
+
+>ionic --help
+
+ile görülebilir.
+
+Node ile inşa edilmiş uygulamalar genellikle taşınma durumunda `node_modules` adı verilen ve projenin çalıştırılabilmesi için önem arz eden klasör, proje ana klasörünün içeriğinden kaldırılarak taşınır. Taşınma işleminden sonra `node_modules` klasörü dahil bazı gereksinimlerin yüklenmesi için
+
+>npm install
+
+komutunun, proje ana klasörü altında çalıştırılması gerekmektedir.
+
+Gerekli yüklemelerin bitmesi sonucunda yine projenin ana klasörü altında
+
+>ionic serve
+
+komutu çalıştırılarak proje, bilgisayar üzerinde tarayıcıdan görüntülenebilecek şekilde ayağa kaldırılabilir.
+
+Proje native özellik eklenmeden oluşturulmuş bir projedir. Projenin yapabileceği fonksiyonların tamamına, tarayıcı üzerinden görüntülenmesi durumunda erişilebilir. Ancak yine de cihaz üzerinde test edilecekse
+
+>ionic cordova run android --device 
+
+kodu ile Android cihazlarda,
+
+>ionic cordova run ios --device
+
+komutu ile Ios cihazlarda çalıştırılabilir.
